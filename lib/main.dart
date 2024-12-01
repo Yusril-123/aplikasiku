@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/manga_screen.dart';
+import 'package:flutter_application_1/movie_screen.dart';
 import 'package:flutter_application_1/splash_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +36,19 @@ class MyApp extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
               iconTheme: const IconThemeData(color: Colors.white),
-              backgroundColor: Color.fromARGB(255, 153, 21, 21),
+              backgroundColor: Colors.transparent,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.black87,
+                      Colors.grey.shade800,
+                    ],
+                  ),
+                ),
+              ),
               centerTitle: true,
               // google fonts
               title: Text(
@@ -83,22 +95,23 @@ class MyApp extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  // ListTile(
-                  //   leading: const Icon(Icons.menu_book),
-                  //   title: const Text('Read Manga'),
-                  //   onTap: () {
-                  //     // page transition
-                  //     Navigator.push(
-                  //         context,
-                  //         PageTransition(
-                  //             type: PageTransitionType.scale,
-                  //             alignment: Alignment.bottomCenter,
-                  //             childCurrent: this,
-                  //             duration: const Duration(milliseconds: 400),
-                  //             // reverseDuration: const Duration(milliseconds: 400),
-                  //             child: const MangaScreen()));
-                  //   },
-                  // ),
+                  ListTile(
+                    leading: const Icon(Icons.movie_creation_outlined),
+                    title: const Text('Movies'),
+                    onTap: () {
+                      // page transition
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.scale,
+                            alignment: Alignment.bottomCenter,
+                            childCurrent: this,
+                            duration: const Duration(milliseconds: 400),
+                            // reverseDuration: const Duration(milliseconds: 400),
+                            child: const MangaScreen(),
+                          ));
+                    },
+                  ),
                   ListTile(
                     // font awesome icon
                     leading: const Icon(FontAwesomeIcons.whatsapp),
@@ -249,8 +262,7 @@ class MyApp extends StatelessWidget {
                             icon: FontAwesomeIcons.github,
                             color: Colors.black,
                             onTap: () async {
-                              final Uri url = Uri.parse(
-                                  'https://github.com/Yusril-123');
+                              final Uri url = Uri.parse('');
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(url,
                                     mode: LaunchMode.externalApplication);
